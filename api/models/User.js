@@ -10,6 +10,8 @@ const UserSchema = new mongoose.Schema(
       default: false,
     },
     img: { type: String },
+    num :{type:Number ,},
+    city:{type :String},
   },
   { timestamps: true }
 );
