@@ -19,7 +19,7 @@ export default function NewProduct() {
   const [cat, setCat] = useState([]);
   const dispatch = useDispatch();
   const alert =useAlert()
-  const FormInputs = useRef()
+
 
   const handleChange = (e) => {
     setInputs((prev) => {
@@ -32,6 +32,7 @@ export default function NewProduct() {
 
   const handleClick = (e) => {
     e.preventDefault();
+    if(file){
     const fileName = new Date().getTime() + file.name;
     const storage = getStorage(app);
     const storageRef = ref(storage, fileName);
@@ -76,7 +77,9 @@ export default function NewProduct() {
         })
         
       }
-    )
+    )}else{
+      alert.error('Please Select An Image For The Product')
+    }
   };
 
   return (
@@ -120,7 +123,12 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <input type="text" placeholder="jeans,skirts" onChange={handleCat} />
+            <select name="categories" onChange={handleChange}>
+            <option value="Tablets">Tablets</option>
+            <option value="PCs">PCs</option>
+            <option value="Phones">Phones</option>
+          </select>
+
         </div>
         <div className="addProductItem">
           <label>Stock</label>

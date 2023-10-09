@@ -25,21 +25,21 @@ export const sliderItems = [
   export const categories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "SHIRT STYLE!",
-      cat:"women"
+      img: "https://res.cloudinary.com/dctnnjoug/image/upload/v1696768985/pexels-veeterzy-303383_sjhq4f.jpg",
+      title: "Laptops!",
+      cat:"PCs"
     },
     {
       id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "LOUNGEWEAR LOVE",
-      cat:"coat"
+      img: "https://res.cloudinary.com/dctnnjoug/image/upload/v1696773981/DSC_1966_q2rqe5.webp",
+      title: "Tabletes",
+      cat:"Tablets"
     },
     {
       id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "LIGHT JACKETS",
-      cat:"jeans"
+      img: "https://res.cloudinary.com/dctnnjoug/image/upload/v1696774489/pexels-screen-post-4526469_nbvuu0.jpg",
+      title: "Phones",
+      cat:"Phones"
     },
   ];
 

@@ -21,24 +21,36 @@ import './App.css'
 import Home from './pages/home/Home'
 
 export default function App() {
+  const positions = {
+    TOP_LEFT: 'top left',
+    TOP_CENTER: 'top center',
+    TOP_RIGHT: 'top right',
+    MIDDLE_LEFT: 'middle left',
+    MIDDLE: 'middle',
+    MIDDLE_RIGHT: 'middle right',
+    BOTTOM_LEFT: 'bottom left',
+    BOTTOM_CENTER: 'bottom center',
+    BOTTOM_RIGHT: 'bottom right'
+  }
   const options = {
     position: positions.BOTTOM_CENTER,
     timeout: 5000,
     offset: '100px',
     transition: transitions.SCALE
   }
+  
   const user = useSelector((state) => state.user.currentUser.isAdmin);
   return (
     <AlertProvider template={AlertTemplate} {...options}>
     <Router>
       <Switch>
-      <Route path="/login">{user ? <Redirect to="/Home" /> : <Login />}</Route>
+      <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
       {user && 
       <>
         <Topbar/>
         <div className="container">
               <Sidebar />
-              <Route path="/Home">
+              <Route path="/">
                 <Home />
               </Route>
               <Route path="/users">

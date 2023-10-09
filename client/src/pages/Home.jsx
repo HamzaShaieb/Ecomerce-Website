@@ -10,7 +10,6 @@ import Footer from '../componentes/Footer'
 export default function Home() {
   return (
     <div>
-        <Announcement/>
         <Navbar/>
         <Slider/>
         <Categories/>

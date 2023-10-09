@@ -9,7 +9,7 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", /*verifyToken, */async (req, res) => {
   const newOrder = new Order(req.body);
 
   try {
@@ -53,7 +53,7 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
     res.status(200).json(orders);
   } catch (err) {
     res.status(500).json(err);
-  }
+  }U
 });
 
 // //GET ALL
