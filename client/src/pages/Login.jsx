@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
@@ -70,25 +70,31 @@ const Error = styled.span`
 `;
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("Hamzaoui");
+  const [password, setPassword] = useState("mydd_secret");
+
+
   const dispatch = useDispatch();
+
   const { isFetching, error } = useSelector((state) => state.user);
 
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
+
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
           <Input
+            value={username}
             placeholder="username"
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
+            value={password}
             placeholder="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
@@ -97,8 +103,9 @@ const Login = () => {
             LOGIN
           </Button>
           {error && <Error>Wrong Credintiales...</Error>}
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
+          <Link>You Can Use This Account </Link>
           <Link>CREATE A NEW ACCOUNT</Link>
+          <Link style={{background:'green',width:'30%' ,padding:'10px',color:'white'}} >Tap This User</Link>
         </Form>
       </Wrapper>
     </Container>

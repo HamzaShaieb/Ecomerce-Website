@@ -1,9 +1,9 @@
 import { Badge } from "@material-ui/core";
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import { Search, ShoppingCartOutlined ,ArrowBack} from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -61,6 +61,7 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  color:'white'
   ${mobile({ flex: 2, justifyContent: "center" })}
 `;
 
@@ -71,24 +72,29 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
+
 const Navbar = () => {
  const quantity = useSelector(state=>state.cart.quantity)
+ const dispatch = useDispatch()
   return (
     <Container>
       <Wrapper>
         <Left>
           <Language>EN</Language>
-          <SearchContainer>
-            <Input placeholder="Search" />
-            <Search style={{ color: "gray", fontSize: 16 }} />
-          </SearchContainer>
         </Left>
         <Center>
           <Logo>TechShop</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+        <MenuItem >
+          <ArrowBack />
+          </MenuItem>
+          <MenuItem>
+          <Link to="/register" style={{ textDecoration:'none',color:'white' }}>REGISTER</Link>
+          </MenuItem>
+          <MenuItem>
+          <Link to="/login" style={{ textDecoration:'none',color:'white' }}>Login</Link>
+          </MenuItem>
           <Link to="/cart">
           <MenuItem>
             <Badge badgeContent={quantity} color="primary">

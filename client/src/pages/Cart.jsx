@@ -1,6 +1,6 @@
 import React from "react";
-import { Add, Remove } from "@material-ui/icons";
-import { useSelector } from "react-redux";
+import { Add, Remove,Delete } from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../componentes/Announcement";
 import Footer from "../componentes/Footer";
@@ -10,6 +10,8 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest,publicRequest } from "../requestMethods";
 import { useHistory} from "react-router-dom";
+import { Dispatch } from "@reduxjs/toolkit";
+import{resetCart,deleteProduct} from '../redux/cartRedux'
 
 
 
@@ -17,6 +19,12 @@ import { useHistory} from "react-router-dom";
 const KEY = process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
+
+const Sucsess = styled.div`
+  position:'absolute',
+  backgroundColor:red
+`;
+
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -167,13 +175,15 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const currentUser = useSelector((state) => state.user.currentUser);
   const [stripeToken, setStripeToken] = useState(null);
+  const [Sucsess, setSucsess] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch()
   const onToken = (token) => {
     setStripeToken(token);
   };
 
   useEffect(() => {
-     
+ 
  /*   const makeRequest = async () => {
       try {
         const res = await publicRequest.post("/checkout/payment", {
@@ -188,6 +198,8 @@ const Cart = () => {
       }
     };*/
     const createOrder = async () => {
+      console.log(currentUser)
+      if (currentUser){ 
       try {
         const res = await userRequest.post("/orders", {
           userId: currentUser._id,
@@ -198,23 +210,21 @@ const Cart = () => {
           amount: cart.total,
           address: stripeToken.card.address_country,
         });
-        alert('Sucsess')
-       
+        dispatch(resetCart())
+        setSucsess(true)
+        
       } catch (error){
         console.log(error)
       }
-    };
-
-    const Sucsess =()=>{
-     /*createOrder*/
-      console.log(stripeToken)
-    }
+    }else {
+      alert('Paymant Failed You Should Login First')
+      history.push('/Login')
+    }};
     stripeToken && createOrder()
   }, [stripeToken, cart, history]);
 
-  const cheKout = ()=>{
-    console.log(stripeToken)
-  }
+
+
   return (
     <Container>
       <Navbar />
@@ -224,14 +234,14 @@ const Cart = () => {
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText></TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
         <Bottom>
           <Info>
-            {cart.products.map((product) => (
+            { cart.products.map((product) => (
               <Product>
                 
                 <ProductDetail>
@@ -250,6 +260,11 @@ const Cart = () => {
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
+                  <ProductAmountContainer >
+                    <button /* onClick={/*dispatch(deleteProduct(product._id))} */ >
+                    <Delete style={{color:'red',cursor:'pointer'}}  />
+                    </button>
+                  </ProductAmountContainer>
                   <ProductAmountContainer>
                     <Add />
                     <ProductAmount>{product.quantity}</ProductAmount>
@@ -291,8 +306,8 @@ const Cart = () => {
               stripeKey={KEY}
               currency="usd"
             >
-              <Button>CHECKOUT NOW</Button>
-            </StripeCheckout>
+              <Button  style={{cursor : cart ? 'pointer' : 'not-allowed'  }}>CHECKOUT NOW</Button>
+            </StripeCheckout >
           </Summary>
         </Bottom>
       </Wrapper>

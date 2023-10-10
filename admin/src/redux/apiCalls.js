@@ -5,10 +5,9 @@ import {
   getusersStart,
   getusersSuccess,
   getusersFailure,
-  deleteuserStart,
   deleteuserSuccess,
   deleteuserFailure,
-  updateusersStart,
+  deleteuserStart,
   updateusersSuccess,
   updateusersFailure
 } from "./userRedux";
@@ -35,6 +34,7 @@ export const login = async (dispatch, user) => {
   try {
     const res = await publicRequest.post("/auth/login", user);
     dispatch(loginSuccess(res.data));
+    console.log(res.data)
     console.log(res.data)
   } catch (err) {
     dispatch(loginFailure());
@@ -63,12 +63,12 @@ export const adduser = async (user, dispatch) => {
   }
 };
 export const deleteusers = async (id, dispatch) => {
-  dispatch(deleteuserStart());
+ /* dispatch(deleteuserStart());*/
   try {
     const res = await userRequest.delete(`/users/${id}`);
-    dispatch(deleteProductSuccess(id));
+    dispatch(deleteuserSuccess(id));
   } catch (err) {
-    dispatch(deleteuserFailure());
+    /*dispatch(deleteuserFailure());*/
   }
 };
 export const updateusers = async (id, user, dispatch) => {
@@ -83,6 +83,16 @@ export const updateusers = async (id, user, dispatch) => {
     console.log(err)
   }
 };
+
+
+
+
+
+
+
+
+
+
 
 
 // Products Api Call

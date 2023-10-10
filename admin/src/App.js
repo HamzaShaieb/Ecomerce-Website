@@ -39,18 +39,18 @@ export default function App() {
     transition: transitions.SCALE
   }
   
-  const user = useSelector((state) => state.user.currentUser.isAdmin);
+  const user =useSelector((state) => state.user.currentUser.isAdmin)
   return (
     <AlertProvider template={AlertTemplate} {...options}>
     <Router>
       <Switch>
       <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
-      {user && 
+      {user ?
       <>
         <Topbar/>
         <div className="container">
               <Sidebar />
-              <Route path="/">
+              <Route path="/Home">
                 <Home />
               </Route>
               <Route path="/users">
@@ -71,11 +71,11 @@ export default function App() {
               <Route path="/newproduct">
                 <NewProduct />
               </Route>
-
+          
         </div>
          </>
-      }
-
+         : <Redirect to="/login" /> }
+        
       </Switch>
     </Router>
     </AlertProvider>

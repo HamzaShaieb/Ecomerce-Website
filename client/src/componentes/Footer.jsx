@@ -13,6 +13,7 @@ import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
+  background:transpearant;
   ${mobile({ flexDirection: "column" })}
 `;
 
@@ -87,14 +88,8 @@ const Payment = styled.img`
 
 const Footer = () => {
   return (
-    <Container>
+    <Container >
       <Left>
-        <Logo>LAMA.</Logo>
-        <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
-        </Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">
             <Facebook />

@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/cartRedux";
 import Product from "./Product";
 import axios from "axios";
 

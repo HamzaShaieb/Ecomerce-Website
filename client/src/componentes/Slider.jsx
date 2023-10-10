@@ -49,8 +49,7 @@ const Image = styled.img`
 `;
 
 const InfoContainer = styled.div`
-  flex: 3;
-  padding: 150px;
+padding: 32px 100px 0px 100px;
 `;
 
 const Title = styled.h1`
@@ -90,6 +89,7 @@ const Slider = () => {
               <Desc>TechShop</Desc>
               <Button>SHOW NOW</Button>
             </InfoContainer>
+            <img src="https://res.cloudinary.com/dctnnjoug/image/upload/v1696769102/TECHSHOP-removebg-preview_vnia7g.png" alt="banner"/>
 
           </Slide>
       </Wrapper>

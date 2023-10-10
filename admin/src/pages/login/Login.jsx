@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/apiCalls";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("Hamzaoui");
+  const [password, setPassword] = useState("mydd_secret");
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
@@ -24,12 +24,14 @@ const Login = () => {
       }}
     >
       <input
+        value='Hamzaoui'
         style={{ padding: 10, marginBottom: 20 }}
         type="text"
         placeholder="username"
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
+        value='mydd_secret'
         style={{ padding: 10, marginBottom: 20 }}
         type="password"
         placeholder="password"
@@ -38,6 +40,7 @@ const Login = () => {
       <button onClick={handleClick} style={{ padding: 10, width:100 }}>
         Login
       </button>
+      <h5>Acsess Directly With Account</h5>
     </div>
   );
 };
